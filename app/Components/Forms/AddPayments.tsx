@@ -1,16 +1,18 @@
 import { LinearGradient } from 'expo-linear-gradient';
 import React, { useState } from 'react';
 import {
-    KeyboardAvoidingView,
-    Modal,
-    Platform,
-    ScrollView,
-    StyleSheet,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    View,
+  KeyboardAvoidingView,
+  Modal,
+  Platform,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
 } from 'react-native';
+import { useRouter } from 'expo-router';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { Path, Svg } from 'react-native-svg';
 
 // Icons
@@ -72,6 +74,7 @@ type Member = { id: string; name: string; email: string; pending: number; plan: 
 type PaymentMethod = 'Cash' | 'Card' | 'UPI' | 'Bank';
 
 export default function AddPayments() {
+  const router = useRouter();
   const [showDropdown, setShowDropdown] = useState(false);
   const [search, setSearch] = useState('');
   const [form, setForm] = useState({
@@ -92,7 +95,7 @@ export default function AddPayments() {
 
   const paymentMethods: PaymentMethod[] = ['Cash', 'Card', 'UPI', 'Bank'];
 
-  const filteredMembers = members.filter(m => 
+  const filteredMembers = members.filter(m =>
     m.name.toLowerCase().includes(search.toLowerCase()) ||
     m.email.toLowerCase().includes(search.toLowerCase())
   );
@@ -114,9 +117,16 @@ export default function AddPayments() {
   };
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       {/* Header */}
 
+      <View style={styles.modalHeader}>
+        <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
+          <BackIcon />
+        </TouchableOpacity>
+        <Text style={styles.modalTitle}>Add Payment</Text>
+        <View style={{ width: 44 }} />
+      </View>
 
       <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={{ flex: 1 }}>
         <ScrollView style={styles.scroll} showsVerticalScrollIndicator={false}>
@@ -292,7 +302,7 @@ export default function AddPayments() {
           </View>
         </View>
       </Modal>
-    </View>
+    </SafeAreaView>
   );
 }
 
@@ -320,7 +330,28 @@ const styles = StyleSheet.create({
   selectedInfo: { marginLeft: 12 },
   selectedName: { fontSize: 15, fontWeight: '600', color: '#fff' },
   selectedMeta: { fontSize: 12, color: '#6b7280', marginTop: 2 },
-
+  backButton: {
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    backgroundColor: 'rgba(255,255,255,0.1)',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  modalTitle: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: '700',
+  },
+  modalHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+    paddingVertical: 16,
+    borderBottomWidth: 1,
+    borderBottomColor: 'rgba(255,255,255,0.1)',
+  },
   // Member Card
   memberCard: { backgroundColor: '#151515', borderRadius: 14, padding: 14, marginTop: 12 },
   memberCardRow: { flexDirection: 'row', justifyContent: 'space-between', paddingVertical: 8 },
