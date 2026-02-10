@@ -1,16 +1,18 @@
 import { LinearGradient } from 'expo-linear-gradient';
 import React, { useState } from 'react';
 import {
-    KeyboardAvoidingView,
-    Platform,
-    ScrollView,
-    StyleSheet,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    View,
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { Path, Svg } from 'react-native-svg';
+import { useRouter } from 'expo-router';
 
 // Icons
 const BackIcon = () => (
@@ -58,6 +60,7 @@ const CheckIcon = () => (
 type Plan = 'Basic' | 'Premium' | 'VIP';
 
 export default function AddMember() {
+  const router = useRouter();
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -84,14 +87,21 @@ export default function AddMember() {
   };
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       {/* Header */}
-      
-      <KeyboardAvoidingView 
+      <View style={styles.modalHeader}>
+        <TouchableOpacity style={styles.backButton} onPress={() => router.back()} >
+          <BackIcon />
+        </TouchableOpacity>
+        <Text style={styles.modalTitle}>Add Member</Text>
+        <View style={{ width: 44 }} />
+      </View>
+
+      <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         style={{ flex: 1 }}>
         <ScrollView style={styles.scroll} showsVerticalScrollIndicator={false}>
-          
+
           {/* Avatar Placeholder */}
           <View style={styles.avatarSection}>
             <LinearGradient colors={['#f97316', '#ea580c']} style={styles.avatar}>
@@ -209,7 +219,7 @@ export default function AddMember() {
           </LinearGradient>
         </TouchableOpacity>
       </View>
-    </View>
+    </SafeAreaView >
   );
 }
 
@@ -232,6 +242,28 @@ const styles = StyleSheet.create({
   // Section
   sectionTitle: { fontSize: 13, fontWeight: '600', color: '#6b7280', marginTop: 24, marginBottom: 12, marginLeft: 4, textTransform: 'uppercase', letterSpacing: 0.5 },
 
+  backButton: {
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    backgroundColor: 'rgba(255,255,255,0.1)',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  modalTitle: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: '700',
+  },
+  modalHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+    paddingVertical: 16,
+    borderBottomWidth: 1,
+    borderBottomColor: 'rgba(255,255,255,0.1)',
+  },
   // Card
   card: { backgroundColor: '#151515', borderRadius: 16, overflow: 'hidden' },
   inputRow: { flexDirection: 'row', alignItems: 'center', paddingHorizontal: 14, height: 54 },

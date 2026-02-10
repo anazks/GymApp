@@ -800,13 +800,13 @@ export default function Home() {
             <Animated.View style={[styles.modalOverlay, { opacity: addMemberFadeAnim }]} />
             <Animated.View style={[styles.addMemberModal, { transform: [{ translateX: addMemberSlideAnim }] }]}>
               <View style={styles.modalContainer}>
-                <View style={styles.modalHeader}>
+                {/* <View style={styles.modalHeader}>
                   <TouchableOpacity style={styles.backButton} onPress={closeAddMember}>
                     <BackIcon />
                   </TouchableOpacity>
-                  <Text style={styles.modalTitle}>Add Member</Text>
+                  <Text style={styles.modalTitle}>Add Membee43r</Text>
                   <View style={{ width: 44 }} />
-                </View>
+                </View> */}
                 <View style={styles.addMemberContent}>
                   <AddMember onClose={closeAddMember} />
                 </View>
@@ -821,13 +821,13 @@ export default function Home() {
             <Animated.View style={[styles.modalOverlay, { opacity: addPaymentFadeAnim }]} />
             <Animated.View style={[styles.addPaymentModal, { transform: [{ translateX: addPaymentSlideAnim }] }]}>
               <View style={styles.modalContainer}>
-                <View style={styles.modalHeader}>
+                {/* <View style={styles.modalHeader}>
                   <TouchableOpacity style={styles.backButton} onPress={closeAddPayment}>
                     <BackIcon />
                   </TouchableOpacity>
                   <Text style={styles.modalTitle}>Add Payment</Text>
                   <View style={{ width: 44 }} />
-                </View>
+                </View> */}
                 <View style={styles.addPaymentContent}>
                   <AddPayments onClose={closeAddPayment} />
                 </View>
@@ -842,13 +842,13 @@ export default function Home() {
             <Animated.View style={[styles.modalOverlay, { opacity: addEnquiryFadeAnim }]} />
             <Animated.View style={[styles.addEnquiryModal, { transform: [{ translateX: addEnquirySlideAnim }] }]}>
               <View style={styles.modalContainer}>
-                <View style={styles.modalHeader}>
+                {/* <View style={styles.modalHeader}>
                   <TouchableOpacity style={styles.backButton} onPress={closeAddEnquiry}>
                     <BackIcon />
                   </TouchableOpacity>
                   <Text style={styles.modalTitle}>Add Enquiry</Text>
                   <View style={{ width: 44 }} />
-                </View>
+                </View> */}
                 <View style={styles.addEnquiryContent}>
                   <AddEnquiry onClose={closeAddEnquiry} />
                 </View>
@@ -863,13 +863,13 @@ export default function Home() {
             <Animated.View style={[styles.modalOverlay, { opacity: addTrainerFadeAnim }]} />
             <Animated.View style={[styles.addTrainerModal, { transform: [{ translateX: addTrainerSlideAnim }] }]}>
               <View style={styles.modalContainer}>
-                <View style={styles.modalHeader}>
+                {/* <View style={styles.modalHeader}>
                   <TouchableOpacity style={styles.backButton} onPress={closeAddTrainer}>
                     <BackIcon />
                   </TouchableOpacity>
                   <Text style={styles.modalTitle}>Add Trainer</Text>
                   <View style={{ width: 44 }} />
-                </View>
+                </View> */}
                 <View style={styles.addTrainerContent}>
                   <AddTrainer onClose={closeAddTrainer} />
                 </View>
